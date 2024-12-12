@@ -23,7 +23,7 @@ services:
     tty: true
     environment: 
       - DB_HOST=mysqldb
-    entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 20s entrypoint.sh
+    entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 50s entrypoint.sh
     volumes:
       - ./nodejs:/app
     ports:
