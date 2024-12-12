@@ -2,14 +2,13 @@
 class GetNames {
     _listNames = [];
     get() {
-        if(this._listNames.length === 0) 
-        {
-            this.handle()
-        }
         return this._listNames;
     }
     removeFirstName() {
         this._listNames.shift();
+        if(this._listNames.length === 0) {
+            this.handle()
+        }
     }
     async handle() {
         const resServicoDados = await fetch('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking/?decada=1950');
