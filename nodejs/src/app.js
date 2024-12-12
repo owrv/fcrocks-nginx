@@ -3,6 +3,8 @@ import routes from './routes.js';
 class App {
     constructor() {
         this.server = express();
+        this.server.set('view engine', 'ejs');
+        this.server.set('views', './views');
         this.routes();
     }
     routes() {
