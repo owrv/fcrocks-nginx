@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:9.1.0
+    restart: always
+    # volumes:
+    #   - ./volumes/mysqldb:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: my_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    tty: true
+    ports:
+      - '3306:3306'
+    networks: 
+      - node-network
+  nodejs:
+    container_name: nodejs
+    build:
+      context: ./nodejs
+      dockerfile: Dockerfile
+    tty: true
+    environment: 
+      - DB_HOST=mysqldb
+    entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 20s entrypoint.sh
+    volumes:
+      - ./nodejs:/app
+    ports:
+      - 3000:3000
+    networks: 
+      - node-network
+    depends_on:
+      - "mysqldb"
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    networks: 
+      - node-network
+    depends_on:
+      - "nodejs"
+networks: 
+  node-network:
+    driver: bridge      
