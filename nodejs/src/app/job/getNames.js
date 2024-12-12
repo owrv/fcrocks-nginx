@@ -1,5 +1,8 @@
 class GetNames {
     _listNames = [];
+    removeFirstName() {
+        this._listNames.shift();
+    }
     async handle() {
         const resServicoDados = await fetch('https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking/?decada=1950');
         const dataServicoDados = await resServicoDados.json();
