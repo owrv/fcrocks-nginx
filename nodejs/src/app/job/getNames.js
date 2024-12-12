@@ -1,5 +1,13 @@
+
 class GetNames {
     _listNames = [];
+    get() {
+        if(this._listNames.length === 0) 
+        {
+            this.handle()
+        }
+        return this._listNames;
+    }
     removeFirstName() {
         this._listNames.shift();
     }
