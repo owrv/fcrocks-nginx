@@ -4,8 +4,8 @@ services:
     container_name: mysqldb
     image: mysql:9.1.0
     restart: always
-    # volumes:
-    #   - ./volumes/mysqldb:/var/lib/mysql
+     volumes:
+       - ./volumes/mysqldb:/var/lib/mysql
     environment:
       MYSQL_DATABASE: my_db
       MYSQL_ROOT_PASSWORD: root
