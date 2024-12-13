@@ -23,7 +23,7 @@ services:
     tty: true
     environment: 
       - DB_HOST=mysqldb
-    entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 20s entrypoint.sh
+    entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 50s entrypoint.sh
     volumes:
       - ./nodejs:/app
     ports:
@@ -34,11 +34,13 @@ services:
       - "mysqldb"
   nginx:
     container_name: nginx
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
+    image: nginx:alpine
+    volumes: 
+      - ./nginx/templates/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - 8080:80
+      - 8080:8080
+    environment: 
+      - NGINX_HOST=localhost:3000
     networks: 
       - node-network
     depends_on:
