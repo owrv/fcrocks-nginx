@@ -2,7 +2,7 @@
 
 echo "Executando criate.js..."
 node criate.js
-
+npm i -g db-migrate
 echo "Executando migrações..."
 db-migrate up 
 
