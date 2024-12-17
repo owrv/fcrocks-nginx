@@ -24,8 +24,6 @@ services:
     environment: 
       - DB_HOST=mysqldb
     entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 50s entrypoint.sh
-    volumes:
-      - ./nodejs:/app
     ports:
       - 3000:3000
     networks: 
