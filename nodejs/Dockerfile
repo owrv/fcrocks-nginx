@@ -9,9 +9,6 @@ RUN apt-get update \
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm install -g db-migrate
-RUN npm install -g db-migrate-mysql
-EXPOSE 3000
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN dos2unix /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
