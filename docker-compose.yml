@@ -26,6 +26,7 @@ services:
     entrypoint: dockerize -wait tcp://mysqldb:3306 -timeout 50s entrypoint.sh
     volumes:
       - ./nodejs:/app
+      - /app/node_modules
     ports:
       - 3000:3000
     networks: 
