@@ -3,7 +3,7 @@ Este projeto é composto por uma aplicação Nginx que serve como proxy para uma
 
 A aplicação Node.js conecta-se a um banco de dados MySQL, insere um novo nome na tabela `people` a cada requisição e exibe todos os registros na página inicial. Um volume é utilizado para persistir os dados no MySQL, garantindo que os registros não sejam perdidos entre reinicializações.
 
-Executando o projeto
+## Executando o projeto
 Para iniciar o projeto, basta executar o comando:
 ```
 docker-compose up -d
